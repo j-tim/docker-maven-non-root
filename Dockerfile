@@ -15,14 +15,8 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
 ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 
-COPY mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
-COPY settings-docker.xml /usr/share/maven/ref/
-
-RUN chown maven:maven /usr/local/bin/mvn-entrypoint.sh
-RUN chown maven:maven /usr/share/maven/ref/settings-docker.xml
-
-VOLUME "$USER_HOME_DIR/.m2"
+COPY settings.xml $MAVEN_CONFIG/settings.xml
+RUN chown maven:maven /home/maven/settings.xml
 
 USER maven
-ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
 CMD ["mvn"]
