@@ -16,7 +16,8 @@ ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 
 COPY settings.xml $MAVEN_CONFIG/settings.xml
-RUN chown maven:maven $MAVEN_CONFIG/settings.xml
+RUN mkdir $MAVEN_CONFIG/repository
+RUN chown maven:maven $USER_HOME_DIR -R
 
 USER maven
 CMD ["mvn"]
