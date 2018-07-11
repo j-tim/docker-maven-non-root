@@ -1,8 +1,8 @@
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8u171-jdk-alpine3.8
 
 RUN apk add --no-cache curl tar bash
 
-ARG MAVEN_VERSION=3.3.9
+ARG MAVEN_VERSION=3.5.4
 ARG USER_HOME_DIR="/home/maven"
 
 RUN adduser maven -D
